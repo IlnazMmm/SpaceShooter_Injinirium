@@ -1,7 +1,6 @@
 import pygame
 from bullet import Bullet
 
-
 class Player:
     def __init__(self, screen):
         self.screen = screen
@@ -23,7 +22,6 @@ class Player:
         elif keys[pygame.K_DOWN] and self.player.bottom < self.screen.get_height():
             self.player.y += self.speed
 
-
         if keys[pygame.K_SPACE]:
             pygame.mixer.Sound('sounds/blaster_shoot.mp3').play()
             bullet = Bullet(self.screen, self.player.centerx, self.player.top)
@@ -37,6 +35,5 @@ class Player:
     def draw(self):
         self.screen.blit(self.rect, self.player)
         # pygame.draw.rect(self.screen, (255, 0, 0), self.rect)
-
         for bullet in self.bullets:
             bullet.draw()

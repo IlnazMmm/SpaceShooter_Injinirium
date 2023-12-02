@@ -8,7 +8,6 @@ def main():
     from bullet import Bullet
     from menu import Menu
     from scoreboard import Scoreboard
-    from example import Example
 
     pygame.mixer.pre_init(44100, -16, 1, 512)
     pygame.init()
@@ -18,30 +17,34 @@ def main():
     explostion_sounds =(pygame.mixer.Sound('sounds/bom1.mp3'),
                         pygame.mixer.Sound('sounds/bom2.mp3'),
                         pygame.mixer.Sound('sounds/bom3.mp3'))
+    path = ["pictures/meteor-transformed.png", "pictures/meteor-transformed.png",
+            "pictures/msg-953981468-23175-transformed.jpg", "pictures/msg-953981468-23175-transformed.jpg"]
 
     screen_width = 800
     screen_height = 600
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Space Shooter")
 
-    menu = Menu(screen, 800, 600)
-    player = Player(screen)
 
-    enemy = Enemy(screen)
-    bullet = Bullet(screen, 10, 10)
-    scoreboard = Scoreboard(screen)
     # all_sprites = pygame.sprite.Group()
     # for i in range(50):
     #     Example(all_sprites)
-
+    menu = Menu(screen, 800, 600)
     menu.run()
+    player = Player(screen)
+
+    # enemy = Enemy(screen, path, )
+    bullet = Bullet(screen, 10, 10)
+    scoreboard = Scoreboard(screen)
+    enemy = Enemy(screen, path, int(menu.enemy_speed))
+    # enemy.speed = int(menu.enemy_speed)
     player.speed = int(menu.bullet_speed)
     player.name = menu.name
 
 
     font = pygame.font.SysFont(None, 30)
     score = 0
-
+# 'cxcv'
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
